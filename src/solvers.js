@@ -13,10 +13,64 @@
 
 // return a matrix (an array of arrays) representing a single nxn chessboard, with n rooks placed such that none of them can attack each other
 
-
+window.makeEmptyMatrix = function(n) {
+  return _(_.range(n)).map(function() {
+    return _(_.range(n)).map(function() {
+      return 0;
+    });
+  });
+};
 
 window.findNRooksSolution = function(n) {
   var solution = undefined; //fixme
+  var matrix =  window.makeEmptyMatrix(4);
+  var board = new Board(matrix);
+  var rows = board.rows();
+  board.set(2, 10);
+  console.log(board.rows());
+// pieces left to place = n
+
+  //place first piece in first position
+    //decrement pieces left to place
+
+  // if more pieces to place
+    //get next available space
+
+
+  // Using recursion and narrowing it down to smaller and smallernested arrays
+  // [1, 0, 0]  // [1, 0]
+  // [0, 1, 0]  // [0, 1]
+  // [0, 0, 1]
+
+  // [0, 1, 0]  [1, 0]
+  // [1, 0, 0]  [0, 1]
+  // [0, 0, 1]
+
+// Starting off with a board of ones, then running conflict checks to change conflicts back to 0's
+
+  // [1, 0, 0]
+  // [0, 1, 0]
+  // [0, 0, 1]
+
+  // [1, 0, 0]
+  // [0, 0, 1]
+  // [0, 1, 0]
+
+  // [0, 1, 0]
+  // [1, 0, 0]
+  // [0, 0, 1]
+
+  // [0, 1, 0]
+  // [0, 0, 1]
+  // [1, 0, 0]
+
+  // [0, 0, 1]
+  // [0, 1, 0]
+  // [1, 0, 0]
+
+  // [0, 0, 1]
+  // [1, 0, 0]
+  // [0, 1, 0]
 
   console.log('Single solution for ' + n + ' rooks:', JSON.stringify(solution));
   return solution;
