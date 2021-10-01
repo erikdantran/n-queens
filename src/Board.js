@@ -78,25 +78,46 @@
     // --------------------------------------------------------------
     //
     // test if a specific row on this board contains a conflict
+    // hasRowConflictAt: function(rowIndex) {
+    //   var row = this.rows()[rowIndex];
+    //   var rowCount = 0;
+    //   _.each(row, function(space){
+    //     rowCount += space;
+    //   });
+    //   return rowCount > 1;
+    //   // return false; // fixme
+    // },
+
     hasRowConflictAt: function(rowIndex) {
-      var row = this.rows()[rowIndex];
-      var rowCount = 0;
-      _.each(row, function(space){
-        rowCount += space;
-      });
-      return rowCount > 1;
-      // return false; // fixme
-    },
+      var row = this.get(rowIndex);
+      var count = 0;
+
+      for ( var i = 0; i < row.length; i++ ) {
+        count += row[i]
+      }
+      return count > 1;
+     },
 
     // test if any rows on this board contain conflicts
+    // hasAnyRowConflicts: function() {
+    //   var hasConflicts = false;
+    //   // var numRows = Object.keys(this.attributes).length;
+    //   for ( var i = 0; i < this.rows().length; i++ ) {
+    //     hasConflicts = this.hasRowConflictAt(i);
+    //     if ( hasConflicts ) { break; }
+    //   };
+    //   return hasConflicts;
+    // },
+
     hasAnyRowConflicts: function() {
-      var hasConflicts = false;
-      // var numRows = Object.keys(this.attributes).length;
-      for ( var i = 0; i < this.rows().length; i++ ) {
-        hasConflicts = this.hasRowConflictAt(i);
-        if ( hasConflicts ) { break; }
-      };
-      return hasConflicts;
+      var size = this.get('n');
+
+      for ( var i = 0; i < size; i++ ) {
+        if (this.hasRowConflictAt(i)) {
+          return true;
+        }
+      }
+      return false;
     },
 
     // COLUMNS - run from top to bottom
